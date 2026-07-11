@@ -22,3 +22,13 @@ def test_rejects_unknown_format():
         assert "Unsupported" in str(exc)
     else:
         raise AssertionError("unknown formats must fail")
+
+
+def test_requires_api_key(monkeypatch):
+    monkeypatch.delenv("OPENAI_API_KEY", raising=False)
+    try:
+        images._headers("application/json")
+    except RuntimeError as exc:
+        assert "OPENAI_API_KEY" in str(exc)
+    else:
+        raise AssertionError("missing API key must fail before network access")
