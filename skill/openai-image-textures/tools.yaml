@@ -1,0 +1,55 @@
+tools:
+  - name: generate_texture_source
+    description: Generate a texture source image with OpenAI and return a validated AssetDescriptor.
+    source_file: scripts/generate_texture_source.py
+    execution: async
+    affinity: any
+    timeout_hint_secs: 180
+    enforce_thread_affinity: true
+    annotations:
+      read_only_hint: false
+      destructive_hint: false
+      idempotent_hint: false
+      open_world_hint: true
+    input_schema:
+      type: object
+      required: [prompt, output_path]
+      properties:
+        prompt: {type: string, minLength: 1}
+        output_path: {type: string}
+        model: {type: string, default: gpt-image-2}
+        size: {type: string, default: 1024x1024}
+        quality: {type: string, enum: [low, medium, high, auto], default: medium}
+    output_schema:
+      type: object
+      required: [asset_descriptor]
+      properties:
+        asset_descriptor: {type: object}
+
+  - name: edit_texture_source
+    description: Edit an existing texture source image and return a new validated AssetDescriptor.
+    source_file: scripts/edit_texture_source.py
+    execution: async
+    affinity: any
+    timeout_hint_secs: 180
+    enforce_thread_affinity: true
+    annotations:
+      read_only_hint: false
+      destructive_hint: false
+      idempotent_hint: false
+      open_world_hint: true
+    input_schema:
+      type: object
+      required: [input_path, prompt, output_path]
+      properties:
+        input_path: {type: string}
+        prompt: {type: string, minLength: 1}
+        output_path: {type: string}
+        mask_path: {type: string}
+        model: {type: string, default: gpt-image-2}
+    output_schema:
+      type: object
+      required: [asset_descriptor]
+      properties:
+        asset_descriptor: {type: object}
+
