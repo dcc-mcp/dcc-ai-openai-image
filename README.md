@@ -5,7 +5,7 @@ DCC-neutral: it writes an image and returns an `AssetDescriptor`; Maya,
 Blender, Houdini, 3ds Max, Unreal, or another adapter owns UVs, baking, material
 creation, and scene import.
 
-![OpenAI texture workflow](docs/openai-image-workflow.png)
+![Generated texture source handed off for DCC material binding](docs/images/dcc-ai-openai-image-showcase.webp)
 
 ## Workflow
 
