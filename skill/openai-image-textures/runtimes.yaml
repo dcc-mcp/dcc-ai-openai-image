@@ -1,0 +1,8 @@
+runtimes:
+  - name: openai-api-key
+    type: env_var
+    env: OPENAI_API_KEY
+    description: OpenAI API credential used for image generation and editing.
+    optional: false
+    guidance: Set OPENAI_API_KEY in the adapter process environment; the skill never creates or stores credentials.
+

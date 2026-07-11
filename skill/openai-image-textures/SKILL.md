@@ -13,6 +13,7 @@ metadata:
     search-hint: "generate texture source, edit texture, create albedo concept, texture decal, OpenAI image"
     produces: [asset_descriptor]
     tools: tools.yaml
+    runtimes: runtimes.yaml
 ---
 
 # OpenAI Image Textures
@@ -20,4 +21,7 @@ metadata:
 Generate or edit a texture source image, then pass the returned
 `asset_descriptor` to the target DCC. Keep PBR channel derivation, UV layout,
 baking, and scene mutation in deterministic host or texture-pipeline skills.
+
+Runtime requirements are declarative only. The skill reports a missing API key
+and never creates credentials or changes the user's environment.
 
